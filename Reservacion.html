@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización - Los Grandes del Norte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="css/style.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #3b3b3b;
+            --secondary-color: #141414;
+            --accent-color: #3b3b3b;
+        }
+
+        body {
+            background:url('Fondo.jpg') no-repeat center center fixed;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+         .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('img/Integrante3.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: white;
+            clip-path: polygon(
+                0% 30%, 2% 40%, 4% 35%, 6% 45%, 8% 30%, 10% 50%, 12% 25%, 14% 45%, 16% 35%, 18% 50%, 
+                20% 30%, 22% 45%, 24% 25%, 26% 40%, 28% 35%, 30% 50%, 32% 20%, 34% 40%, 36% 30%, 38% 45%, 
+                40% 25%, 42% 50%, 44% 30%, 46% 40%, 48% 20%, 50% 45%, 52% 30%, 54% 50%, 56% 25%, 58% 40%, 
+                60% 35%, 62% 50%, 64% 20%, 66% 45%, 68% 30%, 70% 40%, 72% 25%, 74% 50%, 76% 35%, 78% 40%, 
+                80% 30%, 82% 45%, 84% 25%, 86% 50%, 88% 30%, 90% 40%, 92% 35%, 94% 45%, 96% 30%, 98% 50%, 100% 35%,
+                100% 100%, 0% 100%
+            );
+            z-index: 5;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(29, 185, 84, 0.3) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color:rgb(255, 255, 255);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            margin: -80px auto 50px;
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .form-title {
+            color: var(--secondary-color);
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(29, 185, 84, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .form-control:hover {
+            border-color: var(--accent-color);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            color: white;
+        }
+
+        .btn-whatsapp i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .music-notes {
+            position: absolute;
+            color: rgba(255,255,255,0.1);
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .note-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .note-2 { top: 60%; right: 15%; animation-delay: 2s; }
+        .note-3 { top: 40%; left: 80%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .contact-info h5 {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .contact-item {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item i {
+            margin-right: 10px;
+            width: 20px;
+            color: var(--accent-color);
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .form-container {
+                margin: -50px 15px 30px;
+                padding: 25px;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+            }
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-elements::before {
+            content: '🎵';
+            position: absolute;
+            font-size: 30px;
+            color: rgba(255,255,255,0.1);
+            animation: floatAround 15s linear infinite;
+            top: 20%;
+            left: -50px;
+        }
+
+        .floating-elements::after {
+            content: '🎶';
+            position: absolute;
+            font-size: 25px;
+            color: rgba(255,255,255,0.1);
+            animation: floatAround 12s linear infinite reverse;
+            top: 60%;
+            right: -50px;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translateX(-50px) rotate(0deg); }
+            100% { transform: translateX(calc(100vw + 50px)) rotate(360deg); }
+        }
+        
+        #footer {
+    background-color: #212121 !important;
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+    </style>
+</head>
+<body>
+        <!-- Navbar Start -->
+<div class="container-fluid p-0 nav-bar">
+    <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+        <a href="Reservacion.html" class="navbar-brand px-lg-4 m-0">
+            <h1 class="m-0 display-4 text-uppercase text-white"></h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto p-4">
+                <a href="index.html" class="nav-item nav-link">INICIO</a>
+                <a href="REDES.html" class="nav-item nav-link">REDES</a>
+                <a href="Premios.html" class="nav-item nav-link">PREMIOS</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    <div class="hero-section">
+        <div class="floating-elements"></div>
+        <div class="music-notes note-1">🎵</div>
+        <div class="music-notes note-2">🎶</div>
+        <div class="music-notes note-3">🎼</div>
+
+            
+        
+        <div class="container">
+            <h1 class="hero-title">Los Grandes del Norte</h1>
+            <p class="hero-subtitle">Solicita tu cotización para hacer de tu evento algo inolvidable</p>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title">
+                <i class="fas fa-calendar-alt me-3"></i>
+                Formulario de Cotización
+            </h2>
+            
+            <form id="cotizacionForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombre" class="form-label">
+                                <i class="fas fa-user me-2"></i>
+                                Nombre Completo <span class="required">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required 
+                                   placeholder="Ingresa tu nombre completo">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="telefono" class="form-label">
+                                <i class="fas fa-phone me-2"></i>
+                                Teléfono <span class="required">*</span>
+                            </label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" required 
+                                   placeholder="Ej: 312 320 2493">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fecha" class="form-label">
+                                <i class="fas fa-calendar me-2"></i>
+                                Fecha del Evento <span class="required">*</span>
+                            </label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="hora" class="form-label">
+                                <i class="fas fa-clock me-2"></i>
+                                Hora de Inicio <span class="required">*</span>
+                            </label>
+                            <input type="time" class="form-control" id="hora" name="hora" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="duracion" class="form-label">
+                                <i class="fas fa-hourglass-half me-2"></i>
+                                Duración del Evento <span class="required">*</span>
+                            </label>
+                            <select class="form-control" id="duracion" name="duracion" required>
+                                <option value="">Selecciona la duración</option>
+                                <option value="1 hora">1 hora</option>
+                                <option value="2 horas">2 horas</option>
+                                <option value="3 horas">3 horas</option>
+                                <option value="4 horas">4 horas</option>
+                                <option value="5 horas">5 horas</option>
+                                <option value="6 horas">6 horas</option>
+                                <option value="Más de 6 horas">Más de 6 horas</option>
+                                <option value="Todo el día">Todo el día</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tipoEvento" class="form-label">
+                                <i class="fas fa-star me-2"></i>
+                                Tipo de Evento
+                            </label>
+                            <select class="form-control" id="tipoEvento" name="tipoEvento">
+                                <option value="">Selecciona el tipo</option>
+                                <option value="Boda">Boda</option>
+                                <option value="Quinceañero">Quinceañero</option>
+                                <option value="Cumpleaños">Cumpleaños</option>
+                                <option value="Graduación">Graduación</option>
+                                <option value="Corporativo">Evento Corporativo</option>
+                                <option value="Festival">Festival</option>
+                                <option value="Serenata">Serenata</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lugar" class="form-label">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        Lugar del Evento <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="lugar" name="lugar" required 
+                           placeholder="Dirección completa del evento">
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion" class="form-label">
+                        <i class="fas fa-comment-alt me-2"></i>
+                        Descripción y Solicitudes Especiales
+                    </label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" 
+                              placeholder="Describe tu evento, canciones especiales que te gustaría escuchar, número aproximado de invitados, etc."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    Enviar
+                </button>
+            </form>
+        </div>
+           <!-- Footer Start -->
+<div id="footer" class="container-fluid footer text-white mt-5 pt-5 px-0 position-relative overlay-top">
+    <div class="row mx-0 pt-5 px-sm-3 px-lg-5 mt-4">
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Get In Touch</h4>
+            <p><i class="fa fa-map-marker-alt mr-2"></i>Sogamoso-Boyacá</p>
+            <p><i class="fa fa-phone-alt mr-2"></i>+57 312 320 2493</p>
+            <p class="m-0"><i class="fa fa-envelope mr-2"></i>alexsiabato85@gmail.com</p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px;">Síguenos</h4>
+            <p>Visita nuestras redes sociales para que conozcas más de tu grupo favorito!.</p>
+            <div class="d-flex justify-content-start">
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="https://open.spotify.com/artist/2z7VAeaIBQthe1JnvUSd3z?si=QB1KodJJSfKG-QkOU5Anzw"><i class="fab fa-spotify"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="https://www.facebook.com/share/1ZjmuZp41k/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="https://www.instagram.com/losgrandesdelnorteoficial/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <p class="mb-2 text-white">Copyright &copy; <a class="font-weight-bold" href="#"></a>. All Rights Reserved.</a></p>
+        <p class="m-0 text-white">Designed by <a class="font-weight-bold">LOS GRANDES DEL NORTE-SOGAMOSO</a></p>
+    </div>
+</div>
+<!-- Footer End -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('cotizacionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const telefono = document.getElementById('telefono').value;
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+            const duracion = document.getElementById('duracion').value;
+            const tipoEvento = document.getElementById('tipoEvento').value;
+            const lugar = document.getElementById('lugar').value;
+            const descripcion = document.getElementById('descripcion').value;
+
+            // Validar campos requeridos
+            if (!nombre || !telefono || !fecha || !hora || !duracion || !lugar) {
+                alert('Por favor, completa todos los campos obligatorios marcados con *');
+                return;
+            }
+
+            // Formatear fecha
+            const fechaObj = new Date(fecha + 'T00:00:00');
+            const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // Formatear hora
+            const horaFormateada = new Date('1970-01-01T' + hora + ':00').toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+
+            // Crear mensaje para WhatsApp
+            let mensaje = `🎵 *SOLICITUD DE COTIZACIÓN - LOS GRANDES DEL NORTE* 🎵\n\n`;
+            mensaje += `👤 *Nombre:* ${nombre}\n`;
+            mensaje += `📱 *Teléfono:* ${telefono}\n\n`;
+            mensaje += `📅 *Fecha:* ${fechaFormateada}\n`;
+            mensaje += `🕐 *Hora:* ${horaFormateada}\n`;
+            mensaje += `⏰ *Duración:* ${duracion}\n`;
+            mensaje += `📍 *Lugar:* ${lugar}\n`;
+            
+            if (tipoEvento) {
+                mensaje += `🎉 *Tipo de Evento:* ${tipoEvento}\n`;
+            }
+            
+            if (descripcion) {
+                mensaje += `\n📝 *Descripción y Solicitudes:*\n${descripcion}\n`;
+            }
+            
+            mensaje += `\n¡Espero su cotización! 🎶`;
+
+            // Número de WhatsApp (cambia por el número real de la banda)
+            const numeroWhatsApp = '573123202493'; // +57 312 320 2493
+            
+            // Codificar mensaje para URL
+            const mensajeCodificado = encodeURIComponent(mensaje);
+            
+            // Crear URL de WhatsApp
+            const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+            
+            // Abrir WhatsApp
+            window.open(urlWhatsApp, '_blank');
+        });
+
+        // Establecer fecha mínima como hoy
+        document.getElementById('fecha').min = new Date().toISOString().split('T')[0];
+
+        // Animación suave para los campos del formulario
+        const formControls = document.querySelectorAll('.form-control');
+        formControls.forEach(control => {
+            control.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+                this.parentElement.style.transition = 'transform 0.2s ease';
+            });
+            
+            control.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+
+        // Efecto de escritura en el título
+        const title = document.querySelector('.hero-title');
+        const text = title.textContent;
+        title.textContent = '';
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                title.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 500);
+    </script>
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
